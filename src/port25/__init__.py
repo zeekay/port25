@@ -20,4 +20,8 @@ __author__ = "Peter Halliday"
 class PmtaError(Exception):
 	pass
 
-pmta = CDLL("libpmta.so")
+try:
+    pmta = CDLL("libpmta.so")
+except OSError:
+    # not usable on this platform.
+    pmta = None
