@@ -18,9 +18,6 @@ import sys
 from setuptools import Command, setup
 from os import path
 
-sys.path.insert(0, 'src')
-sys.path.insert(1, 'tests')
-
 from port25 import __author__, __license__, __version__
 
 setup(name='port25',
@@ -34,8 +31,7 @@ setup(name='port25',
       setup_requires=['nose>=0.10'],
       platforms = ['any'],
       license = __license__,
-      package_dir={'port25': 'src/port25'},
-      packages=['port25', 'port25.submitter'],
+      packages=['port25'],
       classifiers = [
           'License :: OSI Approved :: GNU General Public License (GPL)',
           'Development Status :: 5 - Production/Stable',
