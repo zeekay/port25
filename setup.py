@@ -9,13 +9,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-"""build script for project."""
+from distutils.core import setup
 
 __docformat__ = 'restructuredtext'
 
 import os
 import sys
-from setuptools import Command, setup
 from os import path
 
 from port25 import __author__, __license__, __version__
