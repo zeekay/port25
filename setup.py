@@ -23,7 +23,7 @@ sys.path.insert(1, 'tests')
 
 from port25 import __author__, __license__, __version__
 
-setup(name='python-port25',
+setup(name='port25',
       version=__version__,
       author=__author__,
       author_email='peter@numbersusa.com',
