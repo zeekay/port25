@@ -4,9 +4,8 @@ include INSTALL
 include LICENSE
 include MANIFEST.in
 include setup.cfg
-include python-port25.spec
-recursive-include test *py
+include port25.spec
+recursive-include port25 *py
 recursive-include docs *
 recursive-include examples *
-prune examples/.svn*
 prune docs/html/*
