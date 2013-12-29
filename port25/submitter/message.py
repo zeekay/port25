@@ -26,7 +26,7 @@ Encoding64Bit = 2
 
 class PmtaMessageError(PmtaError):
     """an error that can get raised at various point.  Each error has a value
-    attribute that contain a number of the error and if printed in string 
+    attribute that contain a number of the error and if printed in string
     contact a human readable representatino too."""
     def __init__(self, msg):
         self.value = pmta.PmtaMsgGetLastErrorType(msg)
@@ -37,14 +37,14 @@ class PmtaMessageError(PmtaError):
 
 class Message(object):
     """Class that manages the message sent to the PowerMTA server.
-        
+
     originator: the string of the email address of who is sending the message."""
-    
+
     def __init__(self, originator):
         #pmta.PmtaMsgAlloc.restype = c_void_p
         self.message = pmta.PmtaMsgAlloc()
         self._as_parameter_ = self.message
-        
+
         if not pmta.PmtaMsgInit(self.message, originator):
             raise PmtaMessageError(self.message)
 
@@ -64,29 +64,29 @@ class Message(object):
 	    data: is the mergemail data to add."""
 	    if not pmta.PmtaMsgAddMergeData(self.message, data, len(data)):
 		    raise PmtaMessageError(self.message)
-				        
+
     def addRecipient(self, recipient):
         """adds a recipient to the message.
-        
+
         recipient: a recipient of type Recipient object."""
         if not pmta.PmtaMsgAddRecipient(self.message, recipient):
             raise PmtaMessageError(self.message)
-        
+
     def addDateHeader(self):
         """adds date header to the message."""
         if not pmta.PmtaMsgAddDateHeader(self.message):
-            raise PmtaMessageError(self.message)        
+            raise PmtaMessageError(self.message)
 
-    def setEncoding(self, encoding=Encoding7Bit):
+    def setEncoding(self, encoding=Encoding8Bit):
         """sets the encoding of the message.
 
-        encoding: encoding with default Encoding7Bit (Encoding7Bit, Encoding8Bit, Encoding64Bit)."""
+        encoding: encoding with default Encoding8Bit (Encoding7Bit, Encoding8Bit, Encoding64Bit)."""
         if not pmta.PmtaMsgSetEncoding(self.message, encoding):
             raise PmtaMessageError(self.message)
 
     def setEnvelopeId(self, envid):
 	    """sets the envelopeID for the message.
-	
+
 	    envid: envelope ID to put on the message."""
 	    if not pmta.PmtaMsgSetEnvelopeId(self.message, envid):
 		    raise PmtaMessageError(self.message)
@@ -107,7 +107,7 @@ class Message(object):
 
 	def setVerp(self, is_verp=True):
 		"""sets the VERP for the message.
-		
+
 		is_verp: whether VERP is set defaults to True (True, False)."""
 		if not pmta.PmtaMsgSetVerp(self.message, is_verp):
 		    raise PmtaMessageError(self.message)
@@ -117,4 +117,4 @@ class Message(object):
 
         vmta: the vmta to set for this message."""
         if not pmta.PmtaMsgSetVirtualMta(self.message, vmta):
-            raise PmtaMessageError(self.message)	
+            raise PmtaMessageError(self.message)

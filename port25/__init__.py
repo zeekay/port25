@@ -22,6 +22,7 @@ class PmtaError(Exception):
 
 try:
     pmta = CDLL("libpmta.so")
+    import submitter
 except OSError:
     # not usable on this platform.
     pmta = None
